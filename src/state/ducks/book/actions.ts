@@ -11,4 +11,4 @@ export const getFilteredBooksAsync = createAsyncAction(
   BookActionTypes.GET_FILTERED_BOOKS,
   BookActionTypes.GET_FILTERED_BOOKS_SUCCESS,
   BookActionTypes.GET_FILTERED_BOOKS_ERROR
-)<undefined, BookT[], string>();
+)<string, BookT[], string>();
