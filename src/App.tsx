@@ -2,6 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import HomeContainer from "./containers/HomeContainer";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 const App: React.FC = () => {
   return (
@@ -11,6 +12,8 @@ const App: React.FC = () => {
       <Switch>
         <Route exact path="/" component={HomeContainer} />
       </Switch>
+
+      <Footer />
     </>
   );
 };
