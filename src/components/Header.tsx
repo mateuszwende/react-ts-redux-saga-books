@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Logo from "../assets/PNG/Logo.png";
-import Container from "../utils/styled.components/Container";
+import { Container } from "../utils/styled.components";
 
 const HeaderWrapper = styled(Container)`
   width: 100%;
