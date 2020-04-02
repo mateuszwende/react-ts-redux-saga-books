@@ -1,4 +1,13 @@
-export type BookT = {
+export type BookGroupingCategoryT =
+  | "year"
+  | "writer"
+  | "artist"
+  | "owner"
+  | "random";
+
+type BookGroupingCategoryMap<T> = { [category in BookGroupingCategoryT]: T };
+
+export interface IBook extends BookGroupingCategoryMap<string | number> {
   name: string;
   writer: string;
   artist: string;
@@ -8,12 +17,12 @@ export type BookT = {
   image: string;
   summary: string;
   year: number;
-};
+}
 
 export type BookStateT = {
-  books?: BookT[];
+  books?: IBook[];
   isLoading: boolean;
-  errors?: string[];
+  error?: string;
 };
 
 export enum BookActionTypes {

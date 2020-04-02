@@ -1,34 +1,35 @@
 import { TypeConstant, Action, PayloadAction } from "typesafe-actions";
-import { BookStateT, BookT, BookActionTypes } from "./types";
+import { BookStateT, IBook, BookActionTypes } from "./types";
 import { ApiErrorsT } from "..";
 
 const initialBookState: BookStateT = {
-  isLoading: false
+  isLoading: false,
+  error: undefined
 };
 
 export const bookReducer = (
   state: BookStateT = initialBookState,
   action: Action<TypeConstant> &
-    PayloadAction<TypeConstant, BookT[] & ApiErrorsT>
+    PayloadAction<TypeConstant, IBook[] & ApiErrorsT & string>
 ): BookStateT => {
   switch (action.type) {
     case BookActionTypes.GET_BOOKS: {
-      return { ...state, isLoading: true };
+      return { ...initialBookState, isLoading: true };
     }
     case BookActionTypes.GET_BOOKS_SUCCESS: {
       return { ...state, isLoading: false, books: action.payload };
     }
     case BookActionTypes.GET_BOOKS_ERROR: {
-      return { ...state, isLoading: false, errors: action.payload };
+      return { ...state, isLoading: false, error: action.payload };
     }
     case BookActionTypes.GET_FILTERED_BOOKS: {
-      return { ...state, isLoading: true };
+      return { ...initialBookState, isLoading: true };
     }
     case BookActionTypes.GET_FILTERED_BOOKS_SUCCESS: {
       return { ...state, isLoading: false, books: action.payload };
     }
     case BookActionTypes.GET_FILTERED_BOOKS_ERROR: {
-      return { ...state, isLoading: false, errors: action.payload };
+      return { ...state, isLoading: false, error: action.payload };
     }
     default: {
       return { ...state };

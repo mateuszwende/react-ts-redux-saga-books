@@ -1,12 +1,12 @@
 import { all, call, put, fork, takeLatest } from "redux-saga/effects";
-import { BookT, BookActionTypes } from "./types";
+import { IBook, BookActionTypes } from "./types";
 import { getBooksAsync, getFilteredBooksAsync } from "./actions";
 import { IReducerAction } from "..";
 import apiCaller from "../../utils/apiHelper";
 
 function* handleGetBooks() {
   try {
-    const res: BookT[] | any = yield call(apiCaller, "GET", `/comics`);
+    const res: IBook[] | any = yield call(apiCaller, "GET", `/comics`);
 
     console.log("Books", res);
 
@@ -22,7 +22,7 @@ function* handleGetBooks() {
 
 function* handleGetFilteredBooks(action: IReducerAction<string>) {
   try {
-    const res: BookT[] | any = yield call(
+    const res: IBook[] | any = yield call(
       apiCaller,
       "GET",
       `/comics/?q=${action.payload}`
