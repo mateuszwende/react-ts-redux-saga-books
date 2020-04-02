@@ -3,12 +3,16 @@ import styled from "styled-components";
 import Logo from "../assets/PNG/Logo.png";
 import { Container } from "../utils/styled.components";
 
-const HeaderWrapper = styled(Container)`
+const HeaderWrapper = styled.div`
   width: 100%;
   height: 73px;
+  background: #535353;
+`;
+
+const HeaderInner = styled(Container)`
+  height: 100%;
   display: flex;
   align-items: center;
-  background: #535353;
 `;
 
 const LogoLink = styled.a`
@@ -24,9 +28,11 @@ const LogoImg = styled.img`
 const Header: React.FC = () => {
   return (
     <HeaderWrapper>
-      <LogoLink href="/">
-        <LogoImg src={Logo} />
-      </LogoLink>
+      <HeaderInner>
+        <LogoLink href="/">
+          <LogoImg src={Logo} />
+        </LogoLink>
+      </HeaderInner>
     </HeaderWrapper>
   );
 };
