@@ -1,8 +1,9 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useCallback } from "react";
 import { IBook, BookGroupingCategoryT } from "../state/ducks/book/types";
 import _ from "lodash";
 import withLoading from "../components/withLoading";
 import withError from "../components/withError";
+import BookListBlock from "../components/BookListBlock";
 
 export type BookListContainerPropsT = {
   books?: IBook[];
@@ -26,31 +27,28 @@ const BookListContainer: React.FC<BookListContainerPropsT> = ({
     return groupingCategory === "year" ? grpBooks.reverse() : grpBooks;
   }, [books, groupingCategory]);
 
-  const getKeyValByGroupCategory = (
-    book: IBook,
-    category: BookGroupingCategoryT
-  ): number | string => {
-    for (const key in book) {
-      if (key === category) {
-        return book[key];
+  const groupName = useCallback(
+    (book: IBook, category: BookGroupingCategoryT): string => {
+      for (const key in book) {
+        if (key === category) {
+          return book[key].toString();
+        }
       }
-    }
-    return "";
-  };
+      return "";
+    },
+    []
+  );
 
   return (
     <div>
       {groupedBooks &&
         groupedBooks.map((groupItem, key) => {
           return (
-            <div key={key}>
-              <p>{getKeyValByGroupCategory(groupItem[0], groupingCategory)}</p>
-              <ul>
-                {groupItem.map((childItem, key) => (
-                  <li key={key}>{childItem.name}</li>
-                ))}
-              </ul>
-            </div>
+            <BookListBlock
+              key={key}
+              groupName={groupName(groupItem[0], groupingCategory)}
+              books={groupItem}
+            />
           );
         })}
     </div>
