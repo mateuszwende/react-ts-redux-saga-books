@@ -22,6 +22,9 @@ export default function apiCaller<T>(
       if (response.status === 500) {
         reject(new Error("Server critical error. Try again later."));
       }
+      if (response.status === 404) {
+        reject(new Error("Not Found."));
+      }
       if (
         (response.status >= 200 && response.status < 300) ||
         response.status === 400
