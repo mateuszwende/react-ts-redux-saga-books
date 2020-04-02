@@ -9,7 +9,7 @@ const Wrapper = styled.div`
 
 const NavLinkButton = styled(NavLink)`
   display: inline-block;
-  margin: 8px;
+  margin: 8px 8px 8px 0;
   padding: 8px 20px;
   border: 0;
   font-size: 18px;
