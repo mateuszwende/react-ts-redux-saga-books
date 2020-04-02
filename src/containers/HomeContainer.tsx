@@ -10,6 +10,7 @@ import { IApplicationState } from "../state/ducks";
 import { BookGroupingCategoryT } from "../state/ducks/book/types";
 import BookListContainer from "./BookListContainer";
 import GroupingCategoryList from "../components/GroupingCategoryList";
+import { useLocation, useParams, useHistory } from "react-router-dom";
 
 const groupingCategories: BookGroupingCategoryT[] = [
   "year",
@@ -19,8 +20,25 @@ const groupingCategories: BookGroupingCategoryT[] = [
   "random"
 ];
 
+const isGroupingCategory = (s: any): s is BookGroupingCategoryT => {
+  return groupingCategories.find(category => {
+    return category === s;
+  })
+    ? true
+    : false;
+};
+
+const isAtHomePath = (path: string) => path === "/";
+
+type ParamTypes = {
+  categoryName: BookGroupingCategoryT;
+};
+
 const HomeContainer: React.FC = () => {
+  const params = useParams<ParamTypes>();
   const dispatch = useDispatch();
+  const history = useHistory();
+  const location = useLocation();
   const [groupingCategory, setGroupingCategory] = useState<
     BookGroupingCategoryT
   >(groupingCategories[0]);
@@ -28,6 +46,20 @@ const HomeContainer: React.FC = () => {
   useEffect(() => {
     dispatch(getBooksAsync.request());
   }, [dispatch]);
+
+  useEffect(() => {
+    const { categoryName } = params;
+
+    if (isAtHomePath(location.pathname)) {
+      return;
+    }
+
+    if (isGroupingCategory(categoryName)) {
+      setGroupingCategory(categoryName);
+    } else {
+      history.push("/404");
+    }
+  }, [params, location, history]);
 
   const { books, isLoading, error } = useSelector(
     ({ book }: IApplicationState) => book
@@ -38,20 +70,12 @@ const HomeContainer: React.FC = () => {
     [dispatch]
   );
 
-  const changeGroupingCategory = useCallback(
-    (category: BookGroupingCategoryT) => {
-      setGroupingCategory(category);
-    },
-    []
-  );
-
   return (
     <Container>
       <BookSearch onSearch={filterBooks} />
       <GroupingCategoryList
         categories={groupingCategories}
-        currentCategory={groupingCategory}
-        onChangeCategory={changeGroupingCategory}
+        isInitial={isAtHomePath(location.pathname)}
       />
       <BookListContainer
         books={books}

@@ -1,12 +1,14 @@
-import React, { MouseEvent, useState, useEffect } from "react";
+import React from "react";
 import { BookGroupingCategoryT } from "../state/ducks/book/types";
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 const Wrapper = styled.div`
   padding: 15px 0;
 `;
 
-const Button = styled.button`
+const NavLinkButton = styled(NavLink)`
+  display: inline-block;
   margin: 8px;
   padding: 8px 20px;
   border: 0;
@@ -26,50 +28,27 @@ const Button = styled.button`
   }
 `;
 
-const isGroupingCategory = (s: any): s is BookGroupingCategoryT => true;
-
 export type GroupingCategoryListPropsT = {
   readonly categories?: BookGroupingCategoryT[];
-  readonly currentCategory: BookGroupingCategoryT;
-  readonly onChangeCategory: (category: BookGroupingCategoryT) => void;
+  readonly isInitial: boolean;
 };
 
 const GroupingCategoryList: React.FC<GroupingCategoryListPropsT> = ({
   categories,
-  currentCategory,
-  onChangeCategory
+  isInitial
 }) => {
-  const [activeCategory, setActiveCategory] = useState<BookGroupingCategoryT>(
-    currentCategory
-  );
-
-  useEffect(() => {
-    onChangeCategory(activeCategory);
-  }, [onChangeCategory, activeCategory]);
-
-  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    if (isGroupingCategory(e.currentTarget.dataset.category)) {
-      setActiveCategory(e.currentTarget.dataset.category);
-    }
-  };
-
-  const isActive = (category: BookGroupingCategoryT) => {
-    return category === activeCategory ? "active" : "";
-  };
-
   return (
     <Wrapper>
       {categories &&
         categories.map((category, key) => (
-          <Button
+          <NavLinkButton
             key={key}
-            onClick={handleClick}
-            className={isActive(category)}
-            data-category={category}
+            to={`/books/category/${category}`}
+            activeClassName="active"
+            className={isInitial && key === 0 ? "active" : ""}
           >
             {category}
-          </Button>
+          </NavLinkButton>
         ))}
     </Wrapper>
   );

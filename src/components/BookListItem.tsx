@@ -8,6 +8,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   margin: 30px;
   width: calc(100% - 60px);
+  cursor: pointer;
 
   @media (min-width: 576px) {
     margin: 30px 15px;
