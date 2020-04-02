@@ -39,7 +39,7 @@ const NameText = styled.p`
   margin: 8px 0 14px;
   font-size: 22px;
   font-weight: 600;
-  color: #ccc;
+  color: ${props => props.theme.mainTextColor};
   word-wrap: wrap;
 `;
 
@@ -47,13 +47,13 @@ const OwnerText = styled.p`
   margin: 0;
   font-size: 16px;
   font-weight: 500;
-  color: #999;
+  color: ${props => props.theme.secondaryTextColor};
   word-wrap: wrap;
 `;
 
 const OwnerNameText = styled.span`
   font-weight: 600;
-  color: #ccc;
+  color: ${props => props.theme.mainTextColor};
 `;
 
 export type BookListItemPropsT = {

@@ -23,7 +23,7 @@ const NavLinkButton = styled(NavLink)`
 
   &.active {
     color: #fff;
-    background: #f15454;
+    background: ${props => props.theme.groupingCategoryActiveBackground};
     box-shadow: 0px 2px 3px rgba(34, 34, 34, 0.6);
   }
 `;

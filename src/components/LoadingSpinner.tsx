@@ -17,9 +17,9 @@ const Wrapper = styled.div`
 `;
 
 const Spinner = styled.div`
-  border: 7px solid #535353;
+  border: 7px solid ${props => props.theme.spinnerBackgroundColor};
   border-radius: 50%;
-  border-top: 7px solid #f15454;
+  border-top: 7px solid ${props => props.theme.spinnerColor};
   width: 70px;
   height: 70px;
   animation: ${keyframeSpin} 1.5s linear infinite;

@@ -5,7 +5,7 @@ import BookListItem from "./BookListItem";
 
 const Wrapper = styled.div`
   padding: 20px 0;
-  border-bottom: 2px solid #535353;
+  border-bottom: 2px solid ${props => props.theme.bookListBorderColor};
   &:last-child {
     border-bottom: none;
   }
@@ -17,7 +17,7 @@ const GroupName = styled.div`
 const GroupNameText = styled.p`
   font-size: 32px;
   margin: 0;
-  color: #aaa;
+  color: ${props => props.theme.titleTextColor};
 `;
 
 const ItemsWrapper = styled.div`

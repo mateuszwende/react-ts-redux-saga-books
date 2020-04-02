@@ -41,19 +41,21 @@ const SearchIcon = styled(Icon)`
 const SearchInput = styled(Input)`
   width: 100%;
   padding: 10px 50px 10px;
-  border: 2px solid #777;
+  border-width: 2px;
+  border-style: solid;
+  border-color: ${props => props.theme.inputBorderColor};
   border-radius: 8px;
   font-size: 16px;
-  color: #cccccc;
+  color: ${props => props.theme.inputTextColor};
   background-color: transparent;
 
   ::placeholder {
-    color: #5a5a5a;
+    color: ${props => props.theme.inputPlaceholderColor};
   }
 
   @media (min-width: 768px) {
     padding: 16px 60px 16px;
-    border: 3px solid #777;
+    border-width: 3px;
     font-size: 20px;
   }
 `;
@@ -87,7 +89,11 @@ const BookSearch: React.FC<BookSearchPropsT> = ({ onSearch }) => {
         <SearchIconButton title="Search books" onClick={handleSearch}>
           <SearchIcon title="" />
         </SearchIconButton>
-        <SearchInput value={value} onChange={handleInputChange} />
+        <SearchInput
+          value={value}
+          onChange={handleInputChange}
+          placeholder="Search by book name..."
+        />
       </SearchInputWrapper>
     </Wrapper>
   );

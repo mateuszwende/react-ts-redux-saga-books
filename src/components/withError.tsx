@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const ErrorMsg = styled.p`
   font-size: 20px;
-  color: #fafafa;
+  color: ${props => props.theme.mainTextColor};
 `;
 
 export type WithErrorPropsT = {

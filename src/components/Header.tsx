@@ -6,7 +6,7 @@ import { Container } from "../utils/styled.components";
 const HeaderWrapper = styled.div`
   width: 100%;
   height: 73px;
-  background: #535353;
+  background: ${props => props.theme.headerBackground};
 `;
 
 const HeaderInner = styled(Container)`
