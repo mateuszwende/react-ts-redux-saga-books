@@ -1,8 +1,9 @@
 import React from "react";
 import { IBook } from "../state/ducks/book/types";
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
-const Wrapper = styled.div`
+const WrapperLink = styled(NavLink)`
   max-width: 100%;
   display: flex;
   flex-direction: column;
@@ -58,11 +59,12 @@ const OwnerNameText = styled.span`
 
 export type BookListItemPropsT = {
   book: IBook;
+  url: string;
 };
 
-const BookListItem: React.FC<BookListItemPropsT> = ({ book }) => {
+const BookListItem: React.FC<BookListItemPropsT> = ({ book, url }) => {
   return (
-    <Wrapper>
+    <WrapperLink to={url}>
       <ImgWrapper>
         <Img src={book.image} alt="Book image" />
       </ImgWrapper>
@@ -70,7 +72,7 @@ const BookListItem: React.FC<BookListItemPropsT> = ({ book }) => {
       <OwnerText>
         Owned By <OwnerNameText>{book.owner}</OwnerNameText>
       </OwnerText>
-    </Wrapper>
+    </WrapperLink>
   );
 };
 

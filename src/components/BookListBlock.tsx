@@ -53,7 +53,9 @@ const BookListBlock: React.FC<BookListBlockPropsT> = ({ groupName, books }) => {
       </GroupName>
       <ItemsWrapper>
         {books &&
-          books.map((item, key) => <BookListItem key={key} book={item} />)}
+          books.map((item, key) => (
+            <BookListItem key={key} book={item} url={`/book/${item.slug}`} />
+          ))}
       </ItemsWrapper>
     </Wrapper>
   );

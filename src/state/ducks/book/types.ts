@@ -9,6 +9,7 @@ type BookGroupingCategoryMap<T> = { [category in BookGroupingCategoryT]: T };
 
 export interface IBook extends BookGroupingCategoryMap<string | number> {
   name: string;
+  slug?: string;
   writer: string;
   artist: string;
   publication: string;

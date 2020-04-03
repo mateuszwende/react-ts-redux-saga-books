@@ -3,14 +3,21 @@ import { IBook, BookActionTypes } from "./types";
 import { getBooksAsync, getFilteredBooksAsync } from "./actions";
 import { IReducerAction } from "..";
 import apiCaller from "../../utils/apiHelper";
+import createSlug from "../../utils/createSlug";
+
+const isResArrBooksType = (o: object): o is IBook[] => true;
 
 function* handleGetBooks() {
   try {
-    const res: IBook[] | any = yield call(apiCaller, "GET", `/comics`);
+    let res: IBook[] | any = yield call(apiCaller, "GET", `/comics`);
 
-    console.log("Books", res);
-
-    yield put(getBooksAsync.success(res));
+    if (isResArrBooksType(res)) {
+      const resWithSlug = res.map(item => ({
+        ...item,
+        slug: createSlug(item.name)
+      }));
+      yield put(getBooksAsync.success(resWithSlug));
+    }
   } catch (err) {
     if (err instanceof Error) {
       yield put(getBooksAsync.failure(err.message!));

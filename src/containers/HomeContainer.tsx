@@ -1,17 +1,17 @@
 import React, { useEffect, useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getBooksAsync,
-  getFilteredBooksAsync
-} from "../state/ducks/book/actions";
+import { getFilteredBooksAsync } from "../state/ducks/book/actions";
 import BookSearch from "../components/BookSearch";
-import { Container } from "../utils/styled.components";
 import { IApplicationState } from "../state/ducks";
 import { BookGroupingCategoryT } from "../state/ducks/book/types";
 import BookListContainer from "./BookListContainer";
 import GroupingCategoryList from "../components/GroupingCategoryList";
 import { useLocation, useParams, useHistory } from "react-router-dom";
 
+/**
+ * if categories would have came from API categories would be stored
+ * in redux store.
+ */
 const groupingCategories: BookGroupingCategoryT[] = [
   "year",
   "writer",
@@ -44,10 +44,6 @@ const HomeContainer: React.FC = () => {
   >(groupingCategories[0]);
 
   useEffect(() => {
-    dispatch(getBooksAsync.request());
-  }, [dispatch]);
-
-  useEffect(() => {
     const { categoryName } = params;
 
     if (isAtHomePath(location.pathname)) {
@@ -71,7 +67,7 @@ const HomeContainer: React.FC = () => {
   );
 
   return (
-    <Container>
+    <>
       <BookSearch onSearch={filterBooks} />
       <GroupingCategoryList
         categories={groupingCategories}
@@ -83,7 +79,7 @@ const HomeContainer: React.FC = () => {
         isLoading={isLoading}
         error={error}
       />
-    </Container>
+    </>
   );
 };
 

@@ -27,7 +27,8 @@ const theme = {
   bookListBorderColor: palette.primary_700,
   groupingCategoryActiveBackground: palette.accent,
   spinnerBackgroundColor: palette.primary_700,
-  spinnerColor: palette.accent
+  spinnerColor: palette.accent,
+  ratingStarBackground: palette.primary_300
 };
 
 export default theme;
