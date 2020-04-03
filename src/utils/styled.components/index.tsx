@@ -12,6 +12,7 @@ export const Input = styled.input`
   border: 1px solid #000;
   outline: none;
   color: #000;
+  font-family: "Roboto", sans-serif;
 `;
 
 export const Img = styled.img`

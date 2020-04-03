@@ -14,6 +14,7 @@ const AppWrapper = styled.div`
   position: relative;
   min-height: 100vh;
   padding-bottom: 53px;
+  font-family: "Roboto", sans-serif;
 `;
 
 const App: React.FC = () => {
