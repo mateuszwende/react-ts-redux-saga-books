@@ -7,15 +7,18 @@ import createSlug from "../../utils/createSlug";
 
 const isResArrBooksType = (o: object): o is IBook[] => true;
 
+const createResponseBookWithSlug = (res: IBook[]) =>
+  res.map(item => ({
+    ...item,
+    slug: createSlug(item.name)
+  }));
+
 function* handleGetBooks() {
   try {
     let res: IBook[] | any = yield call(apiCaller, "GET", `/comics`);
 
     if (isResArrBooksType(res)) {
-      const resWithSlug = res.map(item => ({
-        ...item,
-        slug: createSlug(item.name)
-      }));
+      const resWithSlug = createResponseBookWithSlug(res);
       yield put(getBooksAsync.success(resWithSlug));
     }
   } catch (err) {
@@ -35,9 +38,10 @@ function* handleGetFilteredBooks(action: IReducerAction<string>) {
       `/comics/?q=${action.payload}`
     );
 
-    console.log("Filtered books", res);
-
-    yield put(getFilteredBooksAsync.success(res));
+    if (isResArrBooksType(res)) {
+      const resWithSlug = createResponseBookWithSlug(res);
+      yield put(getFilteredBooksAsync.success(resWithSlug));
+    }
   } catch (err) {
     if (err instanceof Error) {
       yield put(getFilteredBooksAsync.failure(err.message!));
