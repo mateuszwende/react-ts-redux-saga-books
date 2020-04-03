@@ -1,12 +1,15 @@
 import React from "react";
 import { IBook } from "../state/ducks/book/types";
 import styled from "styled-components";
+import { Img } from "../utils/styled.components";
 import { ReactComponent as FullStar } from "../assets/SVG/Full star.svg";
 import { ReactComponent as EmptyStar } from "../assets/SVG/Empty star.svg";
+import withLoading from "./withLoading";
+import withError from "./withError";
 
 const Wrapper = styled.div`
   width: 100%;
-  padding: 16px 0;
+  padding: 16px 0 24px;
 
   display: grid;
   grid-gap: 10px;
@@ -20,6 +23,7 @@ const Wrapper = styled.div`
 
   @media (min-width: 768px) {
     grid-template-columns: 30% auto;
+    padding: 16px 0 48px;
   }
   @media (min-width: 992px) {
     grid-template-columns: 25% auto;
@@ -35,16 +39,6 @@ const ImageBox = styled.div`
 
   @media (min-width: 576px) {
     grid-row: 1 / 3;
-  }
-`;
-
-const Img = styled.img`
-  display: block;
-  max-width: 100%;
-  width: auto;
-
-  @media (min-width: 576px) {
-    width: 100%;
   }
 `;
 
@@ -189,4 +183,4 @@ const BookDetails: React.FC<BookDetailsPropsT> = ({ book }) => {
   );
 };
 
-export default BookDetails;
+export default withLoading(withError(BookDetails));

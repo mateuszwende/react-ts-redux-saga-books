@@ -2,6 +2,7 @@ import React from "react";
 import { IBook } from "../state/ducks/book/types";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { Img } from "../utils/styled.components";
 
 const WrapperLink = styled(NavLink)`
   max-width: 100%;
@@ -30,10 +31,6 @@ const WrapperLink = styled(NavLink)`
 const ImgWrapper = styled.div`
   width: 100%;
   margin-bottom: 16px;
-`;
-
-const Img = styled.img`
-  width: 100%;
 `;
 
 const NameText = styled.p`

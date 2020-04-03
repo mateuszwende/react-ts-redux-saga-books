@@ -24,7 +24,7 @@ const theme = {
   inputTextColor: palette.primary_500,
   inputBorderColor: palette.primary_300,
   inputPlaceholderColor: palette.primary_500,
-  bookListBorderColor: palette.primary_700,
+  seperateLineBorderColor: palette.primary_700,
   groupingCategoryActiveBackground: palette.accent,
   spinnerBackgroundColor: palette.primary_700,
   spinnerColor: palette.accent,

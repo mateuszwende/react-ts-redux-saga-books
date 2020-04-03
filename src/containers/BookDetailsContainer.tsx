@@ -1,12 +1,13 @@
 import React, { useMemo } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { IApplicationState } from "../state/ducks";
-import withError from "../components/withError";
-import withLoading from "../components/withLoading";
 import GoBack from "../components/GoBack";
 import BookDetails from "../components/BookDetails";
+import BookListBlock from "../components/BookListBlock";
+import _ from "lodash";
+import { BreakLine } from "../utils/styled.components";
 
 const Wrapper = styled.div`
   padding: 20px 0;
@@ -18,7 +19,6 @@ type ParamsType = {
 
 const BookDetailsContainer: React.FC = () => {
   const params = useParams<ParamsType>();
-  const history = useHistory();
 
   const { books, isLoading, error } = useSelector(
     ({ book }: IApplicationState) => book
@@ -29,12 +29,16 @@ const BookDetailsContainer: React.FC = () => {
     [params, books]
   );
 
+  const randomBooks = books && _.sampleSize(books, 4);
+
   return (
     <Wrapper>
       <GoBack text="Back to collection" />
       <BookDetails book={book} isLoading={isLoading} error={error} />
+      <BreakLine />
+      <BookListBlock groupName="Other Random Books" books={randomBooks} />
     </Wrapper>
   );
 };
 
-export default withLoading(withError(BookDetailsContainer));
+export default BookDetailsContainer;

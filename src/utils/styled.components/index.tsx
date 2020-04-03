@@ -13,3 +13,18 @@ export const Input = styled.input`
   outline: none;
   color: #000;
 `;
+
+export const Img = styled.img`
+  display: block;
+  max-width: 100%;
+  width: auto;
+
+  @media (min-width: 576px) {
+    width: 100%;
+  }
+`;
+
+export const BreakLine = styled.div`
+  border: 1px solid ${props => props.theme.seperateLineBorderColor};
+  margin: 15px 0;
+`;

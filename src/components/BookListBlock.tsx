@@ -5,7 +5,7 @@ import BookListItem from "./BookListItem";
 
 const Wrapper = styled.div`
   padding: 20px 0;
-  border-bottom: 2px solid ${props => props.theme.bookListBorderColor};
+  border-bottom: 2px solid ${props => props.theme.seperateLineBorderColor};
   &:last-child {
     border-bottom: none;
   }
