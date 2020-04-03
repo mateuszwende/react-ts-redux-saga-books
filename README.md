@@ -1,8 +1,6 @@
-# ComicClan - React Webapp Specification
-
 ### Description
 
-Books library.
+Books library. App displays books getting data from a simple API.
 
 ### Tools
 
