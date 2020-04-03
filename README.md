@@ -2,17 +2,15 @@
 
 ### Description
 
-
 ComicClan, an online community of comic book enthusiasts, has contacted you to help them develop their new online library of comic books. The library will represent the combined collection of comic books owned by the community members.
 
 Fortunately enough, all the data is already cataloged into their DB with a simple API delivering all the information you need. They are asking that you develop a React web-app based on a provided design.
 
-
 ### Specifications
 
 - Implement the following designs into a working web application based on React.
-- The API endpoint for the list of comic books is accessible at `https://comicclan.vett.io/comics`. 
-  - For authentication pass the following header:  `Authorization: Bearer ComicClanVettIO2019`.
+- The API endpoint for the list of comic books is accessible at `https://comicclan.vett.io/comics`.
+  - For authentication pass the following header: `Authorization: Bearer ComicClanVettIO2019`.
   - If you add the `?q=<term>` url parameter you’ll get a filtered list of comic books based on their name.
 - Parse the API response and display the results as outlined in the design (including the inner page).
 - The application should allow the following grouping categories:
@@ -31,7 +29,6 @@ Fortunately enough, all the data is already cataloged into their DB with a simpl
 - Use [Sagas](https://redux-saga.js.org/) for async calls management.
 - Allow grouping through the URL of the app.
 
-
 ### Evaluation
 
 - Design implemented according to attached files using React Components. Result should be as close as possible to the design provided.
@@ -39,11 +36,29 @@ Fortunately enough, all the data is already cataloged into their DB with a simpl
 - Proper routing including a route for the home, inner book page and support for category grouping through the URL.
 - Searching for a comic book (on the main page) filters the current view to show only relevant results.
 
-
 ### Submission
 
-Please organize, design, test and document your code as if it were going into production. Also include detailed instructions on how to build and serve your code;  finally push your changes to the master branch. After you have pushed your code, let us know so we can review your work, **if you won’t let us know you’re done we won’t know we should start testing.**
+Please organize, design, test and document your code as if it were going into production. Also include detailed instructions on how to build and serve your code; finally push your changes to the master branch. After you have pushed your code, let us know so we can review your work, **if you won’t let us know you’re done we won’t know we should start testing.**
 
 All the best and good luck!
 
 The [Vett.io](https://vett.io) Team.
+
+### Project Documentation
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+In the project directory, you can run:
+
+### `yarn build`
+
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+### `yarn start`
+
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The last step is to add `.env` file to the project directory and set up based on
+.env.example` file.
