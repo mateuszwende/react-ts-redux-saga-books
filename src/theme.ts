@@ -21,6 +21,7 @@ const theme = {
   linkHoverTextColor: palette.secondary_100,
   // COMPONENTS
   headerBackground: palette.primary_700,
+  footerBackground: palette.primary_700,
   inputTextColor: palette.primary_500,
   inputBorderColor: palette.primary_300,
   inputPlaceholderColor: palette.primary_500,

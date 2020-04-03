@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Logo from "../assets/PNG/Logo.png";
 import { Container } from "../utils/styled.components";
+import { NavLink } from "react-router-dom";
 
 const HeaderWrapper = styled.div`
   width: 100%;
@@ -15,7 +16,7 @@ const HeaderInner = styled(Container)`
   align-items: center;
 `;
 
-const LogoLink = styled.a`
+const LogoLink = styled(NavLink)`
   display: block;
   outline: none;
   padding: 10px 10px 10px 0;
@@ -29,7 +30,7 @@ const Header: React.FC = () => {
   return (
     <HeaderWrapper>
       <HeaderInner>
-        <LogoLink href="/">
+        <LogoLink to="/">
           <LogoImg src={Logo} />
         </LogoLink>
       </HeaderInner>

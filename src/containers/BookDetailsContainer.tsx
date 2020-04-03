@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
@@ -19,6 +19,10 @@ type ParamsType = {
 
 const BookDetailsContainer: React.FC = () => {
   const params = useParams<ParamsType>();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [params]);
 
   const { books, isLoading, error } = useSelector(
     ({ book }: IApplicationState) => book

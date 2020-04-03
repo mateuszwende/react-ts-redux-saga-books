@@ -8,6 +8,13 @@ import BookDetailsContainer from "./containers/BookDetailsContainer";
 import { useDispatch } from "react-redux";
 import { getBooksAsync } from "./state/ducks/book/actions";
 import { Container } from "./utils/styled.components";
+import styled from "styled-components";
+
+const AppWrapper = styled.div`
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 53px;
+`;
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -17,7 +24,7 @@ const App: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <AppWrapper>
       <Header />
       <Container>
         <Switch>
@@ -33,7 +40,7 @@ const App: React.FC = () => {
       </Container>
 
       <Footer />
-    </>
+    </AppWrapper>
   );
 };
 
