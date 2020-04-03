@@ -1,6 +1,6 @@
 ### Description
 
-Books library. App displays books getting data from a simple API.
+Books library. App displays books data retrieved from simple API.
 
 ### Tools
 
